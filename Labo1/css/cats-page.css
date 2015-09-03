@@ -35,12 +35,12 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #nav .nav-item:hover {
-    border-bottom: 10px solid white;
+    border-bottom: 5px solid white;
     background-color: transparent;
 }
 
 #nav .active {
-    border-bottom: 10px solid #00D4F5;
+    border-bottom: 5px solid blue;
 }
 
 #nav #logo {
@@ -96,4 +96,38 @@ h1,h2,h3,h4,h5,h6 {
     margin-right: auto;
     text-align: right;
     margin-right: 1em;
+}
+
+@media screen and (max-width: 600px) {
+    #nav {
+        position: absolute;
+        width: 100%;
+        z-index: 1000;
+        overflow-y: hidden;
+
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
+
+    #nav:hover {
+        height: 290px;
+    }
+
+    #nav #logo {
+        display: block;
+        float: none;
+    }
+
+    #nav .nav-item {
+        float: none;
+        border-bottom: none;
+        height: 25px;
+    }
+
+    #page {
+        padding-top: 68px;
+    }
 }
