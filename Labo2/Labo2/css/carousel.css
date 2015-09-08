@@ -1,0 +1,60 @@
+#slideshow {
+    height: 330px;
+    width: 400px;
+    text-align:center;
+    margin: 0 auto;
+    font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
+}
+
+#slideshow #slides {
+    height: 300px;
+    position: relative;
+}
+
+#slideshow #slides .slide {
+    height: 300px;
+    width: 400px;
+    overflow: hidden;
+    position: absolute;
+    background: #000;
+    color: #fff
+}
+
+.slide-img {
+    height: 267px;
+    width: 400px;
+}
+
+#slides-controls {
+    width: 60px;
+    background-color: blanchedalmond;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px
+}
+
+#slides-controls a {
+    margin: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+    background: blue;
+    border: 1px solid #fff;
+    text-indent: -9000px;
+    display: block;
+    overflow: hidden;
+    float: left
+}
+
+#slides-controls a:hover {
+    background: lightblue;
+}
+
+#slides-controls a.highlight {
+    background: #fff;
+    border: 1px solid lightblue;
+}
