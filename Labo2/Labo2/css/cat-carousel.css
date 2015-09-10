@@ -1,7 +1,7 @@
 #slideshow {
     height: 330px;
     width: 400px;
-    text-align:center;
+    text-align: center;
     margin: 0 auto;
     font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
 }
@@ -58,3 +58,28 @@
     background: #fff;
     border: 1px solid lightblue;
 }
+
+.slide-arrow-left {
+    background-image: url("https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-left-01-512.png");
+    position: absolute;
+    float: left;
+    z-index: 1;
+    height: 7em;
+    width: 5em;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-top: 10%;
+}
+
+.slide-arrow-right {
+    background-image: url("https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png");
+    margin-top: 10%;
+    position: relative;
+    float: right;
+    z-index: 1;
+    height: 7em;
+    width: 5em;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+

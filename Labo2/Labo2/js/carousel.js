@@ -1,14 +1,11 @@
 var slidePrefix = "slide-";
 var slideControlPrefix = "slide-control-";
-var slideHighlightClass = "highlight";
+var highlightClass = "highlight";
 var slidesContainerID = "slides";
 var slidesControlsID = "slides-controls";
-var slideDelay = 3000;
-var slideAnimationInterval = 20;
-var slideTransitionSteps = 10;
 var slideTransStep = 0;
-var transTimeout = 0;
-var crtSlideIndex = 1;
+var transitionTimeout = 0;
+var currentSlideIndex = 1;
 var slidesCollection = [];
 var slidesPages = [];
 var nextSlideIndex = 0;
@@ -16,6 +13,7 @@ var previousSlideIndex = 0;
 var numberOfSlides = 0;
 var nextSlide;
 var currentSlide;
+var slideTransitionSteps = 10;
 
 function setUpSlideShow() {
 
@@ -34,7 +32,7 @@ function setUpSlideShow() {
         if (i > 0) {
             slidesCollection[i].style.display = "none";
         } else {
-            slidesPages[i].className = slideHighlightClass;
+            slidesPages[i].className = highlightClass;
 
         }
         document.onkeydown = detectChar;
@@ -42,8 +40,8 @@ function setUpSlideShow() {
 }
 
 
-function detectChar(event){
-    var charCode = event.keyCode;
+function detectChar(keyEvent){
+    var charCode = keyEvent.keyCode;
     if (charCode == 39) {
         switchSlide(nextSlideIndex, true);
     }
@@ -51,28 +49,12 @@ function detectChar(event){
         switchSlide(previousSlideIndex, true);
     }
 }
+function showNextSlide(indexOfCurrentSlide){
+    switchSlide(indexOfCurrentSlide+1, true);
+}
 
-function switchSlide(slideNo, immediate) {
-    if (slideTransStep != 0 || slideNo == crtSlideIndex)
-        return;
-
-    clearTimeout(transTimeout);
-
-    if (slideNo <= 0) {
-        slideNo = numberOfSlides;
-    }
-    previousSlideIndex = crtSlideIndex - 1;
-    nextSlideIndex = slideNo;
-    currentSlide = document.getElementById(slidePrefix + crtSlideIndex);
-    nextSlide = document.getElementById(slidePrefix + nextSlideIndex);
-    slideTransStep = 0;
-
-    // start the transition now upon request or after a delay (default)
-    if (immediate == true) {
-        slideTransition();
-    } else {
-        transTimeout = setTimeout("slideTransition()", slideDelay);
-    }
+function showPreviousSlide(indexOfCurrentSlide){
+    switchSlide(indexOfCurrentSlide-1, true);
 }
 
 function changeSlideByPage(control) {
@@ -81,43 +63,57 @@ function changeSlideByPage(control) {
 
 
 function slideTransition() {
-    // make sure the next slide is visible (albeit transparent)
+
     nextSlide.style.display = "block";
 
-    // calculate opacity
-    var opacity = slideTransStep / slideTransitionSteps;
-    console.log(opacity);
+    var opacity = slideTransStep / 10;
 
-    // fade out the current slide
     currentSlide.style.opacity = "" + (1 - opacity);
     currentSlide.style.filter = "alpha(opacity=" + (100 - opacity * 100) + ")";
 
-    // fade in the next slide
     nextSlide.style.opacity = "" + opacity;
     nextSlide.style.filter = "alpha(opacity=" + (opacity * 100) + ")";
 
-    // if not completed, do this step again after a short delay
     if (++slideTransStep <= slideTransitionSteps) {
-        transTimeout = setTimeout("slideTransition()", slideAnimationInterval);
+        transitionTimeout = setTimeout("slideTransition()", 20);
     } else {
         currentSlide.style.display = "none";
         transitionCompleted();
-        clearTimeout(transTimeout);
     }
 }
 
 function transitionCompleted() {
     slideTransStep = 0;
-    crtSlideIndex = nextSlideIndex;
+    currentSlideIndex = nextSlideIndex;
 
-    switchSlide((crtSlideIndex >= numberOfSlides) ? 1 : crtSlideIndex + 1);
+    switchSlide((currentSlideIndex >= numberOfSlides) ? 1 : currentSlideIndex + 1);
 
-    //unhighlight all controls
     for (var i = 0; i < slidesPages.length; i++) {
         slidesPages[i].className = "";
     }
 
-    // highlight the control for the next slide
-    slidesPages[crtSlideIndex - 1].className = slideHighlightClass;
+    slidesPages[currentSlideIndex - 1].className = highlightClass;
 
+}
+function switchSlide(wantedSlideNumber, immediate) {
+    if (slideTransStep != 0 || wantedSlideNumber == currentSlideIndex)
+        return;
+
+    clearTimeout(transitionTimeout);
+
+    if (wantedSlideNumber <= 0) {
+        wantedSlideNumber = numberOfSlides;
+    }
+    previousSlideIndex = currentSlideIndex - 1;
+    nextSlideIndex = wantedSlideNumber;
+
+    currentSlide = document.getElementById(slidePrefix + currentSlideIndex);
+    nextSlide = document.getElementById(slidePrefix + nextSlideIndex);
+    slideTransStep = 0;
+
+    if (immediate == true) {
+        slideTransition();
+    } else {
+        transitionTimeout = setTimeout("slideTransition()", 3000);
+    }
 }

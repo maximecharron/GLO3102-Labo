@@ -6,7 +6,7 @@
     <title>Cats are jerk!</title>
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Indie+Flower' type="text/css">
     <link rel="stylesheet" href="css/cats-page.css">
-    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/cat-carousel.css">
     <script src="js/randomProverb.js"></script>
     <script src="js/carousel.js"></script>
 </head>
@@ -25,30 +25,33 @@
         Fluffier Cats
     </div>
 </div>
-    <div id="slideshow">
-        <div class="title">
-            Slideshow bonus with fluffy cats!
-        </div>
-        <div class="slide-arrow-left"></div>
+<div id="slideshow">
+    <div class="title">
+        Slideshow bonus with fluffy cats!
+    </div>
+    <div class="slide-arrow-left" onclick="showPreviousSlide(currentSlideIndex)">
+        <a href="#"></a>
+    </div>
+    <div class="slide-arrow-right" onclick="showNextSlide(currentSlideIndex)"><a href="#"></a></div>
+    <div id="slides">
 
-        <div id="slides">
-
-            <div class="slide"><img src="http://thecatapi.com/api/images/get?format=src&type=jpg" class="slide-img">Fluffy
-                cat
-            </div>
-            <div class="slide"><img src="http://thecatapi.com/api/images/get?format=src&type=gif" class="slide-img"/>Fluffier
-                cat
-            </div>
-            <div class="slide"><img src="http://thecatapi.com/api/images/get?format=src&type=png" class="slide-img"/>OMG
-                a cat!
-            </div>
+        <div class="slide"><img src="http://thecatapi.com/api/images/get?format=src&type=jpg" class="slide-img">Fluffy
+            cat
         </div>
-        <div class="slide-arrow-left"><a  class="glyphicon glyphicon-menu-right" onclick="showPreviousSlide(nextSlideIndex, true)"></a></div>
-        <div id="slides-controls">
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
+        <div class="slide"><img src="http://thecatapi.com/api/images/get?format=src&type=gif" class="slide-img"/>Fluffier
+            cat
+        </div>
+        <div class="slide"><img src="http://thecatapi.com/api/images/get?format=src&type=png" class="slide-img"/>OMG
+            a cat!
         </div>
     </div>
+
+
+    <div id="slides-controls">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+    </div>
+</div>
 </body>
 </html>
