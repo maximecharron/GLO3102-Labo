@@ -74,8 +74,8 @@
 .slide-arrow-right {
     background-image: url("https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png");
     margin-top: 10%;
-    position: relative;
-    float: right;
+    position: absolute;
+    margin-left: 50%;
     z-index: 1;
     height: 7em;
     width: 5em;

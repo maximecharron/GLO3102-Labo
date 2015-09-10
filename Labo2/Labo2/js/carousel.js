@@ -104,6 +104,9 @@ function switchSlide(wantedSlideNumber, immediate) {
     if (wantedSlideNumber <= 0) {
         wantedSlideNumber = numberOfSlides;
     }
+    if(wantedSlideNumber > numberOfSlides){
+        wantedSlideNumber = 1;
+    }
     previousSlideIndex = currentSlideIndex - 1;
     nextSlideIndex = wantedSlideNumber;
 
