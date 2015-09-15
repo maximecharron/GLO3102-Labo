@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Cats are jerk!</title>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Indie+Flower' type="text/css">
+    <link rel="stylesheet" href="css/cats-page.css">
+    <link rel="stylesheet" href="css/cat-carousel.css">
+    <script src="js/randomProverb.js"></script>
+    <script src="js/carousel.js"></script>
+</head>
+<body onload = setUpSlideShow()>
+<div id="nav">
+    <div id="logo">
+        Fluffy Cats
+    </div>
+    <div class="nav-item active">
+        Home
+    </div>
+    <div class="nav-item">
+        Popular Cats
+    </div>
+    <div class="nav-item">
+        Fluffier Cats
+    </div>
+</div>
+<div id="slideshow">
+    <div class="title">
+        Slideshow bonus with fluffy cats!
+    </div>
+    <div class="slide-arrow-left" onclick="showPreviousSlide(currentSlideIndex)">
+        <a href="#"></a>
+    </div>
+    <div class="slide-arrow-right" onclick="showNextSlide(currentSlideIndex)"><a href="#"></a></div>
+    <div id="slides">
+
+        <div class="slide"><img src="http://thecatapi.com/api/images/get?format=src&type=jpg" class="slide-img">
+            <p class="randomProverb"></p>
+        </div>
+        <div class="slide"><img src="http://thecatapi.com/api/images/get?format=src&type=gif" class="slide-img"/>
+            <p class="randomProverb"></p>
+        </div>
+        <div class="slide"><img src="http://thecatapi.com/api/images/get?format=src&type=png" class="slide-img"/>
+            <p class="randomProverb"></p>
+        </div>
+    </div>
+
+
+    <div id="slides-controls">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+    </div>
+</div>
+</body>
+</html>
