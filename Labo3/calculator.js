@@ -35,12 +35,16 @@ var Calculator = function () {
     }
 
     this.add = function (value) {
-
+        computedEquation += '+'
+        if (typeof value !== 'undefined') { //If undefined we do nothing with it.
+            computedEquation += parseFloat(value);
+        }
+        return this;
     }
 
     this.sub = function (value) {
         computedEquation += '-'
-        if (typeof value !== 'undefined') { //If undefined we do nothing with it.
+        if (typeof value !== 'undefined') {
             computedEquation += parseFloat(value);
         }
         return this;
@@ -58,7 +62,7 @@ var Calculator = function () {
         computedEquation += '/'
         if (typeof value !== 'undefined') {
             if (value == 0) {
-                throw "Impossible to divide by zero.";
+                throw "Only Chuck Norris can divide by 0.";
             }
             computedEquation += parseFloat(value);
         }
