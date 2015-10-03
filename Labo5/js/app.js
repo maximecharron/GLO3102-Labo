@@ -7,22 +7,27 @@ $.fn.taskEditor = function (connection) {
     var tasksContainer = this;
     var newTaskEditor = tasksContainer.find('#task-editor');
 
+    var numberOfTaskAdded;
+
     getAllTask();
 
-    //function createNewTask(taskContent) {
-    //    return { task : taskContent };
-    //}
-
     function getAllTask() {
-        connection.getAll(updatedCreatedTasks);
+        connection.getAll(updatedCreatedTasks, actionOnError);
+    }
+
+
+    function actionOnError(errorStatus, errorMessage) {
+        tasksContainer.find("#error-message").val(errorStatus + " " + errorMessage);
     }
 
     function updatedCreatedTasks(createdTasks) {
         newTaskEditor.val('');
-        //$('#tasks-list')
 
-        for (var i = 0; i < createdTasks.length; i++) {
-            var createdTask = createdTasks[i];
+        $("#tasks-list").html(''); // for reseting the list of tasks
+
+        numberOfTaskAdded = createdTasks.tasks.length;
+        for (var i = 0; i < numberOfTaskAdded; i++) {
+            var createdTask = createdTasks.tasks[i];
 
             var div = $("<div/>", {"class": "task", "id": "task" + createdTask.id});
 
@@ -34,31 +39,35 @@ $.fn.taskEditor = function (connection) {
         }
 
         // bind the update button
-        tasksContainer.find(".btn-update").click(function(){
+        tasksContainer.find(".btn-update").click(function () {
             var parentElement = $(this).parent();
 
             var taskContent = parentElement.find(".task-content").val();
 
-            connection.update({task:taskContent}, '/' + parentElement.attr('id').replace("task", ""));
+            connection.update({task: taskContent},
+                '/' + parentElement.attr('id').replace("task", ""), getAllTask, actionOnError);
         });
 
         //bind the delete button
-        tasksContainer.find(".btn-delete").click(function(){
+        tasksContainer.find(".btn-delete").click(function () {
             //fetch the parent for getting the
             var parentElement = $(this).parent();
 
-            connection.delete('/'+ parentElement.attr('id').replace("task", ""));
+            connection.delete('/' + parentElement.attr('id').replace("task", ""), getAllTask, actionOnError);
         });
 
     }
 
+    tasksContainer.find("#btn-add-task").click(function () {
+        addTask();
+    })
     // define the function for adding a task
-    function addTask(){
+    function addTask() {
         var newTaskContent = newTaskEditor.val();
 
-        connection.add({task:newTaskContent}, updatedCreatedTasks);
-    }
+        connection.add("/" + numberOfTaskAdded++, {task: newTaskContent}, getAllTask, actionOnError);
 
+    }
 
 }
 

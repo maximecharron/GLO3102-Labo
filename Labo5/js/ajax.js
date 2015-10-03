@@ -5,33 +5,34 @@ function AjaxConnection(url) {
     this.baseUrl = url;
     this.contentType = 'application/json;charset=UTF-8';
 
-    this.getAll = function ( successCallback) {
+
+    this.getAll = function ( successCallback, errorCallback) {
         $.ajax({
             type: "GET",
             contentType: this.contentType,
             url: this.baseUrl,
             success: function (returnedMessage) {
-                successCallback()
+                successCallback(returnedMessage)
             }, error: function (XMLHttpRequest, status, errorThrown) {
-                console.log(status);
+                errorCallback(status, errorThrown);
             }
         });
     }
-    this.add = function (data, successCallback) {
+    this.add = function (url, data, successCallback, errorCallback) {
         $.ajax({
             type: "POST",
             contentType: this.contentType,
-            url: this.baseUrl,
+            url: this.baseUrl + url,
             data: JSON.stringify(data),
             success: function (returnedMessage) {
-                successCallback()
+                successCallback();
             }, error: function (XMLHttpRequest, status, errorThrown) {
-                console.log(status);
+                errorCallback(status, errorThrown);
             }
         });
     }
 
-    this.delete = function (url, successCallback) {
+    this.delete = function (url, successCallback, errorCallback) {
         $.ajax({
             type: "DELETE",
             contentType: this.contentType,
@@ -39,14 +40,14 @@ function AjaxConnection(url) {
             success: function (returnedMessage) {
                 successCallback()
             }, error: function (XMLHttpRequest, status, errorThrown) {
-                console.log(status);
+                errorCallback(status, errorThrown);
             }
         });
     }
 
 
 
-    this.update = function (data, url,  successCallback) {
+    this.update = function (data, url,  successCallback, errorCallback) {
         $.ajax({
             type: "PUT",
             contentType: this.contentType,
@@ -55,7 +56,7 @@ function AjaxConnection(url) {
             success: function (returnedMessage) {
                 successCallback()
             }, error: function (XMLHttpRequest, status, errorThrown) {
-                console.log(status);
+                errorCallback(status, errorThrown);
             }
         });
     }
