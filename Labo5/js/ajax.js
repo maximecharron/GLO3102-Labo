@@ -18,11 +18,11 @@ function AjaxConnection(url) {
             }
         });
     }
-    this.add = function (url, data, successCallback, errorCallback) {
+    this.add = function (data, successCallback, errorCallback) {
         $.ajax({
             type: "POST",
             contentType: this.contentType,
-            url: this.baseUrl + url,
+            url: this.baseUrl,
             data: JSON.stringify(data),
             success: function (returnedMessage) {
                 successCallback();

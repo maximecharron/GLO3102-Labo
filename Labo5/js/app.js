@@ -65,7 +65,7 @@ $.fn.taskEditor = function (connection) {
     function addTask() {
         var newTaskContent = newTaskEditor.val();
 
-        connection.add("/" + numberOfTaskAdded++, {task: newTaskContent}, getAllTask, actionOnError);
+        connection.add({task: newTaskContent}, getAllTask, actionOnError);
 
     }
 
