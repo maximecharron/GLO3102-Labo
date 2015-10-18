@@ -1,9 +1,9 @@
 $(function () {
-  var taskCollection = new TaskCollection({});
-  taskCollection.url = 'http://localhost:5000/tasks';
+  var tasks = new TaskCollection({});
+  tasks.url = 'http://localhost:5000/tasks';
 
-  var taskView = new TaskView({
-    collection: taskCollection
+  var view = new TaskView({
+    collection: tasks
   });
-  taskCollection.fetch();
+  tasks.fetch();
 });

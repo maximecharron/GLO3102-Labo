@@ -11,7 +11,7 @@
         },
         validate: function (attrs) {
             if (!attrs.task || attrs.task === "") {
-                return 'Please enter a valid task.';
+                return 'Task is not valid.';
             }
         }
     });
