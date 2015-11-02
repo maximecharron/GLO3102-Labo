@@ -1,0 +1,42 @@
+.labo-title{
+
+}
+.forecast-title, h2,h3,h4, p, span{
+    color: white;
+}
+#forecast-container{
+    background-color: #889fdc;
+    padding:1% 4%;
+
+}
+.forecast{
+    display: inline-block;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: center;
+}
+.btn-refresh{
+    float: right;
+    background-color: #a1a1a1;
+    color: white;
+    border-radius: 3px;
+    padding: 5px 10px;
+    border: 1px solid ghostwhite;
+    cursor: pointer;
+}
+.btn-refresh:hover, .btn-refresh:active{
+    background-color: #626262;
+
+}
+@media screen and (max-width: 600px) {
+    #forecast-container {
+        width: 95%;
+    }
+
+    .forecast {
+        text-align:center;
+        display: block;
+        margin-bottom: 5px;
+    }
+}

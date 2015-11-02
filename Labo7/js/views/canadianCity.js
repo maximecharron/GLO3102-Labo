@@ -3,29 +3,14 @@
  */
 var template = '<p id="error-handler" style="display:none;">Error when calling the api</p>' +
 
-    '<h4 class="forecast-title">Here is the forecast for your location: <button class="btn-refresh" >Refresh</button></h4>' +
-    '<% _.each(weeklyForecast, function(forecast){ %>' +
-    '<div class="forecast">' +
-    '<h2> <%=forecast.date.weekday %></h2>' +
-    '<h3><%=forecast.date.monthname%> <%=forecast.date.day%>, <%=forecast.date.year%></h3>' +
-    '<div class="forecast-icon">' +
-    '<img src="<%=forecast.icon_url%>">' +
-    '</div>' +
-    '<div clas="forecast-temperature">' +
-    '<span>High : <%=forecast.high.celsius%> Low : <%=forecast.low.celsius%></span>' +
-    '</div>' +
-    '</div>' +
-    '<% }); %>';
-
 $(function () {
-    ForecastView = Backbone.View.extend({
+    CanadianCityView = Backbone.View.extend({
         template: _.template(template),
         el: "#forecast-container",
         events: {
             "click .btn-refresh": "refresh"
         },
         initialize: function () {
-
             _.bindAll(this, 'render');
 
             // creating a variable for the current view
@@ -37,7 +22,6 @@ $(function () {
             });
         },
         render: function () {
-
             this.$el.html(this.template({
                 weeklyForecast: this.collection.toJSON()
             }));

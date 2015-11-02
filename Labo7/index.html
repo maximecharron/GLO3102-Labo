@@ -1,9 +1,11 @@
 <!doctype html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Taskit!</title>
+    <title>Weather!</title>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone.js"></script>
@@ -11,33 +13,11 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-<h1 class="task-title">Labo 7 : GLO 3002 magical forecast(Pumped weather)! </h1>
+<h1 class="labo-title">Labo 7 : GLO 3002 magical forecast(Pumped weather)! </h1>
 
 <div id="forecast-container">
 
 </div>
-
-<script id="forecast-template" type="text/template">
-    <p id="error-handler" style="display:none;">Error when calling the api</p>
-    <h4 class="forecast-title">Here is the forecast for your location: </h4>
-    <% _.each(weeklyForecast, function(forecast){ %>
-    <div class="forecast">
-        <h2> <%=forecast.date.weekday %></h2>
-
-        <h3><%=forecast.date.monthname%> <%=forecast.date.day%>, <%=forecast.date.year%></h3>
-
-        <div class="forecast-icon">
-            <img src="<%=forecast.icon_url%>">
-        </div>
-        <div clas="forecast-temperature">
-            <span>High : <%=forecast.high.celsius%> Low : <%=forecast.low.celsius%></span>
-        </div>
-
-    </div>
-    <% }); %>
-
-
-</script>
 
 <script src="js/models/forecast.js"></script>
 <script src="js/views/forecast.js"></script>
