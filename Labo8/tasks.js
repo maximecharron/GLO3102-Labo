@@ -4,7 +4,7 @@
 var tasksList = [];
 
 exports.getAll = function (req, res) {
-    res.json({tasks: tasks});
+    res.json({tasks: tasksList});
 };
 
 exports.create = function (req, res) {
