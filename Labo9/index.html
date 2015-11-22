@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Taskit!</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<h1 class="task-title">Labo 9 : Login! </h1>
+<div class="labo9-container">
+
+</div>
+
+<script id="tasks-template" type="text/template">
+    <div class="labo9-container">
+        <p id="error-handler" style="display:none;">Error when calling the api</p>
+
+        <div id="task-container">
+            <textarea id="task-editor" rows="4" cols="50" placeholder="Type your new task here!"></textarea>
+            <button id="btn-add-task">Add task</button>
+        </div>
+    </div>
+    <h4 class="task-title">Tasks created that remain to be done : </h4>
+    <% _.each(tasks, function(task){ %>
+    <div class="task">
+        <textarea class="task-content"><%= task.task %></textarea>
+        <button class="btn-save" data-id="<%= task.id %>">Save</button>
+        <button class="btn-delete" data-id="<%= task.id %>">Delete</button>
+    </div>
+    <% }); %>
+
+
+</script>
+
+<script src="js/models/task.js"></script>
+<script src="js/collections/tasks.js"></script>
+<script src="js/views/tasks.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
