@@ -26,10 +26,12 @@ $(function () {
             var collection = options.collection;
             console.log(router);
             router.on('route:login', function () {
-                self.verifyIfLogged(self.displayProfile, self.displayLogin, router, collection);
+                self.verifyIfLogged(self.redirectToProfile, self.displayLogin, router, collection);
 
             }).on('route:profile', function () {
                 self.verifyIfLogged(self.displayProfile, self.redirectToLogin, router, collection);
+            }).on('route:*default', function(){
+                self.verifyIfLogged(self.redirectToProfile, self.redirectToLogin, router, collection);
             });
 
         },
@@ -46,6 +48,7 @@ $(function () {
         },
         verifyIfLogged: function (successCallback, errorCallback, router, collection) {
             var token = getToken();
+
             $.ajax({
                 type: "GET",
                 contentType: contentType,
@@ -69,7 +72,6 @@ $(function () {
             $("#labo9-container").html(profileTemplate({profile: data}));
         },
         redirectToProfile: function (router) {
-
             router.navigate("profile", {trigger: true, replace: true});
         },
         displayLogin: function (router, collection) {

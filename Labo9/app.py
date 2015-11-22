@@ -25,7 +25,7 @@ users = [
 def after_request(data):
 	response = make_response(data)
 	response.headers['Content-Type'] = 'application/json'
-	response.headers['Access-Control-Allow-Origin'] = '*'
+	response.headers['Access-Control-Allow-Origin'] = 'origin'
 	response.headers['Access-Control-Allow-Headers'] = "Origin, X-Requested-With, Content-Type, Accept, token"
 	return response
 
@@ -79,6 +79,5 @@ def get_user_profile():
 		return jsonify( user ), 201
 	else :
 		abort(403)
-
 if __name__ == '__main__':
     app.run(debug = True)
