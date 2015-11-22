@@ -7,6 +7,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.min.js"></script>
 
     <link rel="stylesheet" href="css/app.css">
 </head>
@@ -41,7 +42,8 @@
             <label class="username-label">Username</label>
 
             <input type="text" class="username"><%= username %></input>
-            <label class="email-label">Password</label><input type="text"><%= email%></input>
+            <label class="password-label">Password</label><input type="text" class="password"><%= password%></input>
+            <button class="btn-login">Login</button>
         </div>
     </div>
 </script>
