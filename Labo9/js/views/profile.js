@@ -49,12 +49,13 @@ $(function () {
             $.ajax({
                 type: "GET",
                 contentType: contentType,
-                headers:{
-                    token : token
+                headers: {
+                    token: token
                 },
                 url: this.collection.url + "userprofile",
                 success: function (data) {
-                    successCallback(router,collection, data)
+                    window.location.href = "index.html#/profile";
+                    successCallback(router, collection, data)
                 }, error: function (XMLHttpRequest, status, errorThrown) {
                     errorCallback(router, collection);
                 }
@@ -65,9 +66,9 @@ $(function () {
             router.navigate("login", {trigger: true, replace: true});
         },
         displayProfile: function (router, collection, data) {
-            collection.set(data);
-            console.log(this.template);
-            $("#labo9-container").html(this.template(collection.toJSON()));
+            var profileTemplate = _.template($('#profile-template').html());
+            console.log(profileTemplate);
+            $("#labo9-container").html(profileTemplate({profile: data}));
         },
         redirectToProfile: function (router) {
 
