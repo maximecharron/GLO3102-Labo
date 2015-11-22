@@ -10,9 +10,8 @@ $(function () {
         template: _.template($('#profile-template').html()),
         el: "#labo9-container",
         events: {
-            "click .btn-login": "login"
-            //"click .btn-save": "update",
-            //"click .btn-delete": "delete"
+            "click .btn-login": "login",
+            "click .btn-logout": "logout"
         },
         initialize: function (options) {
             //Must bindAll. If not, it doesn't work.
@@ -25,6 +24,7 @@ $(function () {
             });
             var router = options.router;
             var collection = options.collection;
+            console.log(router);
             router.on('route:login', function () {
                 self.verifyIfLogged(self.displayProfile, self.displayLogin, router, collection);
 
@@ -62,12 +62,10 @@ $(function () {
             });
         },
         redirectToLogin: function (router) {
-            console.log(router);
             router.navigate("login", {trigger: true, replace: true});
         },
         displayProfile: function (router, collection, data) {
             var profileTemplate = _.template($('#profile-template').html());
-            console.log(profileTemplate);
             $("#labo9-container").html(profileTemplate({profile: data}));
         },
         redirectToProfile: function (router) {
@@ -99,7 +97,10 @@ $(function () {
                 }
             });
         },
-
+        logout : function(){
+            Cookies.remove("token");
+            window.location.href = "index.html#/login";
+        }
 
     });
 

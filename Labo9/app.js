@@ -8,4 +8,5 @@ $(function () {
         collection: profile,
         router:router
     });
+    profileView.verifyIfLogged(profileView.displayProfile, profileView.redirectToLogin, router, profile);
 });
