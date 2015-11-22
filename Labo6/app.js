@@ -5,5 +5,6 @@ $(function () {
   var view = new TaskView({
     collection: tasks
   });
-  tasks.fetch();
+  tasks.verifyIfLogged();
+  view.verifyIfLogged();
 });

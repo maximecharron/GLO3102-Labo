@@ -2,42 +2,55 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Taskit!</title>
+    <title>To Login or not To login!</title>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone.js"></script>
 
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 <h1 class="task-title">Labo 9 : Login! </h1>
-<div class="labo9-container">
+
+<div id="labo9-container">
 
 </div>
-
-<script id="tasks-template" type="text/template">
-    <div class="labo9-container">
+<script id="profile-template" type="text/template">
+    <div class="profile-container">
         <p id="error-handler" style="display:none;">Error when calling the api</p>
 
-        <div id="task-container">
-            <textarea id="task-editor" rows="4" cols="50" placeholder="Type your new task here!"></textarea>
-            <button id="btn-add-task">Add task</button>
+        <h1 class="profile-header">Profile</h1>
+
+        <div class="profile-container">
+            <label id="username-label">Username</label>
+
+            <h3 class="username"><%= profile.username %></h3>
+            <label class="email-label">Email</label><h4><%= profile.email%></h4>
         </div>
     </div>
-    <h4 class="task-title">Tasks created that remain to be done : </h4>
-    <% _.each(tasks, function(task){ %>
-    <div class="task">
-        <textarea class="task-content"><%= task.task %></textarea>
-        <button class="btn-save" data-id="<%= task.id %>">Save</button>
-        <button class="btn-delete" data-id="<%= task.id %>">Delete</button>
-    </div>
-    <% }); %>
-
 
 </script>
+<script id="login-template" type="text/template">
+    <div class="profile-container">
+        <p class="error-handler" style="display:none;">Error when calling the api</p>
 
-<script src="js/models/task.js"></script>
-<script src="js/collections/tasks.js"></script>
-<script src="js/views/tasks.js"></script>
+        <h1 class="profile-header">Login</h1>
+
+        <div id="login-container">
+            <label class="username-label">Username</label>
+
+            <input type="text" class="username"><%= username %></input>
+            <label class="email-label">Password</label><input type="text"><%= email%></input>
+        </div>
+    </div>
+</script>
+
+
+<script src="js/models/profile.js"></script>
+<script src="js/collections/profiles.js"></script>
+<script src="js/router.js"></script>
+<script src="js/views/profile.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
