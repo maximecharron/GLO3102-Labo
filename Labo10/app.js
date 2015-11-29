@@ -6,13 +6,13 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 app.get('/', function(req, res){
-    res.sendfile('index.html');
+    res.sendFile('index.html');
 });
 app.get('/style/app.css',function(req, res){
-    res.sendfile('style/app.css');
+    res.sendFile('style/app.css');
 });
 app.get('/js/client.js', function(req, res){
-    res.sendfile('js/client.js');
+    res.sendFile('js/client.js');
 });
 http.listen(3000, function(){
     console.log('listening on *:3000');
